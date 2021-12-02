@@ -6,35 +6,37 @@ public class Launcher {
 
     public static void main(String[] args) {
         if (args.length != 0){
-            if (args.length == 1) {
-                if (args[0].equals("-interactive")) {
-                    Simulation simulation = new Simulation(new HumanPlayer());
-                    SecureRandom random = new SecureRandom();
-                    long randomNumber = random.nextInt(100); // génère un nombre entre 0 (inclus) et 100 (exclus)
-                    simulation.initialize(randomNumber);
-                    simulation.loopUntilPlayerSucceed(Long.MAX_VALUE);
-                }else {
-                    DisplayHelp();
-                }
-            }
-            if (args.length == 2) {
-                if(args[0].equals("-auto")) {
-                    if (args[1].matches("[+-]?\\d*(\\.\\d+)?")) {
-                        Simulation simulation = new Simulation(new ComputerPlayer());
+            switch (args.length) {
+                case 1:
+                    if (args[0].equals("-interactive")) {
+                        Simulation simulation = new Simulation(new HumanPlayer());
                         SecureRandom random = new SecureRandom();
-                        long randomNumber = random.nextInt(100);
+                        long randomNumber = random.nextInt(100); // génère un nombre entre 0 (inclus) et 100 (exclus)
                         simulation.initialize(randomNumber);
-                        simulation.loopUntilPlayerSucceed(Integer.parseInt(args[1]));
-                    }else {
+                        simulation.loopUntilPlayerSucceed(Long.MAX_VALUE);
+                    } else {
                         DisplayHelp();
                     }
-                }else {
+                    break;
+                case 2:
+                    if (args[0].equals("-auto")) {
+                        if (args[1].matches("[+-]?\\d*(\\.\\d+)?")) {
+                            Simulation simulation = new Simulation(new ComputerPlayer());
+                            SecureRandom random = new SecureRandom();
+                            long randomNumber = random.nextInt(100);
+                            simulation.initialize(randomNumber);
+                            simulation.loopUntilPlayerSucceed(Integer.parseInt(args[1]));
+                        } else {
+                            DisplayHelp();
+                        }
+                    } else {
+                        DisplayHelp();
+                    }
+                    break;
+                default:
                     DisplayHelp();
-                }
-            }else {
-                DisplayHelp();
+                    break;
             }
-
         } else {
             DisplayHelp();
         }

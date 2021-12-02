@@ -4,7 +4,6 @@ import fr.lernejo.logger.Logger;
 import fr.lernejo.logger.LoggerFactory;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Simulation {
 
@@ -17,7 +16,6 @@ public class Simulation {
     }
 
     public void initialize(long numberToGuess) {
-        logger.log("Initialising number to guess...");
         this.numberToGuess = numberToGuess;
     }
 
@@ -35,23 +33,19 @@ public class Simulation {
     }
 
     public void loopUntilPlayerSucceed(long max_nb_iteration) {
-        long count = 0;
         boolean winOrLoose;
-        long time_before = System.currentTimeMillis();
+        long start_time = System.currentTimeMillis();
         while ((!(winOrLoose = this.nextRound())) && (max_nb_iteration != 0)) {
-            count++;
             max_nb_iteration--;
         }
-        long time_after = System.currentTimeMillis();
-        long time_used = time_after - time_before;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss:SSS");
-        Date d_time_used = new Date(time_used);
-        String time = dateFormat.format(d_time_used);
-        logger.log("Time elapsed: " + time );
+        long end_time = System.currentTimeMillis();
+        long total_time = end_time - start_time;
+        SimpleDateFormat sdf = new SimpleDateFormat("mm:ss:SSS");
+        String time = sdf.format(total_time);
+        logger.log(time);
         if(winOrLoose)
-            logger.log("SUCCESS in " + count + " attempts !!");
+            logger.log("SUCCESS");
         if(!winOrLoose)
             logger.log("FAILURE");
-
     }
 }
