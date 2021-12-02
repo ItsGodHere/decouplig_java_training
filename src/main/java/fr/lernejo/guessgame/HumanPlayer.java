@@ -10,7 +10,6 @@ public class HumanPlayer implements Player {
 
     @Override
     public long askNextGuess() {
-        logger.log("Enter a number...");
         Scanner entree =   new Scanner(System.in);
         return entree.nextInt();
     }
