@@ -49,7 +49,7 @@ public class Simulation {
         String time = dateFormat.format(d_time_used);
         logger.log("Time elapsed: " + time );
         if(winOrLoose)
-            logger.log("SUCCESS in " + count + " attempts");
+            logger.log("SUCCESS in " + count + " attempts !!");
         if(!winOrLoose)
             logger.log("FAILURE");
 
