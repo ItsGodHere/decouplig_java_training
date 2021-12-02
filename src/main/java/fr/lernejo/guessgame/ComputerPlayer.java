@@ -20,5 +20,6 @@ public class ComputerPlayer implements Player{
             this.low = this.current;
         if (!lowerOrGreater)
             this.high = this.current;
+        logger.log(""+this.current);
     }
 }

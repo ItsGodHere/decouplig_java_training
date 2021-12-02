@@ -44,8 +44,8 @@ public class Simulation {
         String time = sdf.format(total_time);
         logger.log(time);
         if(winOrLoose)
-            logger.log("SUCCESS");
+            logger.log("WIN");
         if(!winOrLoose)
-            logger.log("FAILURE");
+            logger.log("LOOSE");
     }
 }
